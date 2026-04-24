@@ -1,0 +1,68 @@
+[project]
+name = "flowcompare"
+version = "0.0.1"
+description = "Unified JAX benchmark of Bayesian Flow Networks and Discrete Flow Matching for protein sequence generation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "flowcompare contributors" }]
+keywords = [
+    "protein",
+    "generative",
+    "bayesian-flow-networks",
+    "flow-matching",
+    "jax",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "jax>=0.4.30",
+    "jaxlib>=0.4.30",
+    "flax>=0.8",
+    "optax>=0.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "ruff>=0.3",
+]
+
+[project.scripts]
+flowcompare-train = "flowcompare.scripts.train:main"
+flowcompare-sample = "flowcompare.scripts.sample:main"
+flowcompare-eval = "flowcompare.scripts.eval:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["flowcompare"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["N802", "N803", "N806"]
+# Mathematical notation: K = vocab size (Graves 2023), d = embed dim, etc.
+"flowcompare/processes/*" = ["N803", "N806"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
