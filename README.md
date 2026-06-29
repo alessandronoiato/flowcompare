@@ -38,10 +38,6 @@ Working implementations of:
   (held-out ELBO, diversity, novelty, NFE Pareto), checkpointing, and CLI
   scripts (`flowcompare-train`, `flowcompare-sample`, `flowcompare-eval`).
 
-Research-grade training runs (UniRef50 + OAS, ~30–150M params) are the
-next step; infrastructure is ready but the reported benchmark numbers
-will be produced once the training jobs complete. See
-[`docs/reproduction.md`](docs/reproduction.md) for the recipe.
 
 ## Framework
 
@@ -189,27 +185,3 @@ asserts loss decreases on a 20-step run over synthetic data.
 ## License
 
 MIT. See [`LICENSE`](LICENSE).
-
-## Citing
-
-If this repo is useful for your work, please cite the underlying methods
-as well:
-
-```bibtex
-@article{graves2023bayesian,
-  title={Bayesian Flow Networks},
-  author={Graves, Alex and Srivastava, Rupesh Kumar and Atkinson, Timothy
-          and Mandt, Stephan},
-  journal={arXiv:2308.07037},
-  year={2023}
-}
-
-@article{gat2024discrete,
-  title={Discrete Flow Matching},
-  author={Gat, Itai and Remez, Tal and Shaul, Neta and Kreis, Karsten
-          and Chen, Ricky T. Q. and Synnaeve, Gabriel and Adi, Yossi
-          and Lipman, Yaron},
-  journal={arXiv:2407.15595},
-  year={2024}
-}
-```
